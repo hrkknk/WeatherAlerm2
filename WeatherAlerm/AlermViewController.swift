@@ -11,7 +11,7 @@ import UIKit
 class AlermViewController: UIViewController, WeatherViewDelegate {
 
     // MARK: - Properties
-    var alerm: Alerm?
+    var alerm: Alerm? = Alerm(time: Date(), weather: "Sunny")
 
     //MARK: - Outlets
     @IBOutlet weak var selectedWeather: UILabel!
@@ -31,18 +31,24 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
         alerm!.weather = weather
         print("\(alerm!.weather)")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //モデル作成(デフォルト値をセット)
-        alerm = Alerm(time: Date(), weather: "Sunny")
+        //前画面(アラーム一覧画面)がSunny/RainyどちらだったかによってselectedWeatherを切り替え
+        self.selectedWeather.text = "\(self.alerm!.weather) >"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //画面再表示の度にselectedWeatherを更新
+        self.selectedWeather.text = "\(self.alerm!.weather) >"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
