@@ -95,10 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				CCBC344E211F495600BF6E6D /* AppDelegate.swift */,
-				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
-				CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */,
 				CCD980F32168A50C00C9B8D8 /* AlermTableViewController.swift */,
 				CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */,
+				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
+				CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */,
 				CCD980FB2168B5A100C9B8D8 /* Alerm.swift */,
 				CCBC3452211F495600BF6E6D /* Main.storyboard */,
 				CCBC3455211F495800BF6E6D /* Assets.xcassets */,

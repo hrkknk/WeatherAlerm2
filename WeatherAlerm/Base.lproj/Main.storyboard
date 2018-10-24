@@ -63,7 +63,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ye1-dL-sR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1623" y="145"/>
+            <point key="canvasLocation" x="1606" y="146"/>
         </scene>
         <!--Add Alerm-->
         <scene sceneID="Uxu-fv-uj3">
@@ -90,7 +90,7 @@
                                 <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Weather"/>
                                 <connections>
-                                    <segue destination="3Sd-CO-54W" kind="show" identifier="SelectWeather" id="WzO-0O-7A1"/>
+                                    <segue destination="lIe-DS-mbc" kind="show" identifier="SelectWeather" id="WzO-0O-7A1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunny &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuO-nK-rWf">
@@ -141,7 +141,11 @@
                         <viewLayoutGuide key="safeArea" id="gaI-XA-SWr"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Alerm" id="4IX-kL-vRj">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="53P-Zc-K6y"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="53P-Zc-K6y">
+                            <connections>
+                                <action selector="cancel:" destination="qFs-eU-oB3" id="Ypi-7A-kuT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="CtJ-hc-axb"/>
                     </navigationItem>
                     <connections>
@@ -150,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRc-09-OFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3697" y="142"/>
+            <point key="canvasLocation" x="3065" y="144"/>
         </scene>
         <!--Weather-->
         <scene sceneID="nMg-rx-Dda">
@@ -183,12 +187,16 @@
                         <viewLayoutGuide key="safeArea" id="BtY-kK-oi1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Weather" id="wj2-4p-CYp">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="sbP-oA-Smp"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="sbP-oA-Smp">
+                            <connections>
+                                <action selector="back:" destination="3Sd-CO-54W" id="CAF-rS-s4K"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N25-8a-0f8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5924" y="144"/>
+            <point key="canvasLocation" x="4489" y="144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2m1-xr-lXA">
@@ -206,7 +214,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17e-rq-V9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="145.27736131934034"/>
+            <point key="canvasLocation" x="866" y="146"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M1u-cB-SWu">
@@ -224,28 +232,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiU-29-9o5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2694" y="143"/>
+            <point key="canvasLocation" x="2340" y="145"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="aQp-Yv-a0L">
+        <scene sceneID="a1K-It-RLl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y2K-f0-1QI" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mn0-bv-k0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lIe-DS-mbc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2G5-lm-OzU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6uu-CP-7H3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3Sd-CO-54W" kind="relationship" relationship="rootViewController" id="xu1-At-1Ma"/>
+                        <segue destination="3Sd-CO-54W" kind="relationship" relationship="rootViewController" id="YC4-sM-6sS"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V97-sq-hbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4801" y="597"/>
+            <point key="canvasLocation" x="3774" y="145"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="xu1-At-1Ma"/>
-    </inferredMetricsTieBreakers>
 </document>

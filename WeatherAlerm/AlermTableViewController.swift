@@ -8,17 +8,25 @@
 
 import UIKit
 
+/*
+ アラーム一覧画面のコントローラ
+ ・登録済みアラームを一覧表示
+ ・登録済みアラームのON/OFF切り替え
+ ・アラーム新規登録画面/アラーム編集画面の呼び出し
+ ・Sunny/Rainyの切り替え(未実装)
+ */
 class AlermTableViewController: UITableViewController, AlermTableViewDelegate {
     
+    //MARK: - Properties
+    
+    var alerms = [Alerm]()
+    
+    //MARK: - Methods
     //スイッチの状態を記憶(Cell側から読んでもらうプロトコルメソッド)
     func saveSwitchOnOff(index: Int) {
         alerms[index].isOn = !alerms[index].isOn
         print("Cell:\(index) = \(alerms[index].isOn)")
     }
-    
-    //MARK: Properties
-    
-    var alerms = [Alerm]()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,12 +8,14 @@
 
 import UIKit
 
-protocol AlermTableViewDelegate: class {
-    func saveSwitchOnOff(index: Int)
-}
 
+/*
+ アラーム一覧画面のセル
+ ・AlermTableViewDelegateを保持
+ */
 class AlermTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
     weak var delegate: AlermTableViewDelegate?
     
     //自分のrow(Controller側から設定してもらう)
@@ -23,12 +25,21 @@ class AlermTableViewCell: UITableViewCell {
         return
     }
     
+    //MARK: - Outlets
+    //アラーム時刻
     @IBOutlet weak var timeLabel: UILabel!
+    
+    //アラームON/OFF状態
     @IBOutlet weak var isOnSwitch: UISwitch!
+    
+    
+    //MARK: - Actions
+    //スイッチON/OFFを切り替える
     @IBAction func switchOnOff(_ sender: UISwitch) {
         delegate?.saveSwitchOnOff(index: self.row)
     }
     
+    //MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,7 +47,11 @@ class AlermTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+}
+
+//MARK - Protocol
+//コントローラ側にDelegateになってもらい、セルごとのスイッチON/OFF状態を記憶する
+protocol AlermTableViewDelegate: class {
+    func saveSwitchOnOff(index: Int)
 }

@@ -9,21 +9,28 @@
 import UIKit
 
 class AlermViewController: UIViewController, WeatherViewDelegate {
-    
-    func setWeather(weather: String) {
-        alerm!.weather = weather
-        print("\(alerm!.weather)")
-    }
 
     // MARK: - Properties
     var alerm: Alerm?
-//    var weatherViewController = WeatherViewController()
 
+    //MARK: - Outlets
     @IBOutlet weak var selectedWeather: UILabel!
+    
+    //MARK: - Actions
+    //キャンセルボタン
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func setAlermDate(_ sender: UIDatePicker) {
        alerm!.time = sender.date
     }
     
+    //MARK: - Methods
+    func setWeather(weather: String) {
+        alerm!.weather = weather
+        print("\(alerm!.weather)")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,20 +44,25 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
             case "SelectWeather":
-                guard let weatherViewController = segue.destination as? WeatherViewController else {
+                //UINavigationControllerを取得
+                guard let navigationController = segue.destination as? UINavigationController else {
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
+                //UINavigationControllerの次の画面(WeatherViewController)を取得
+                guard let weatherViewController = navigationController.topViewController as? WeatherViewController else {
+                    fatalError("Unexpected topViewController: \(String(describing: navigationController.topViewController))")
+                }
+                
+                //次の画面(WeatherViewController)のデリゲートにselfをセット
                 weatherViewController.delegate = self
             
             default:
                 fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
     }
-    
 }
 

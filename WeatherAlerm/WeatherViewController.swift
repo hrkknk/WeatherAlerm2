@@ -8,29 +8,36 @@
 
 import UIKit
 
-protocol WeatherViewDelegate: class {
-    // 天気を設定するメソッド
-    func setWeather(weather: String)
-}
-
 class WeatherViewController: UIViewController {
     
+    //MARK: - Properties
     var delegate: WeatherViewDelegate?
     
+    //MARK: - Actions
+    //戻るボタン
+    @IBAction func back(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //アラームの天気をSunnyに設定する
     @IBAction func setWeatherSunny(_ sender: UIButton) {
         //天気をsunnyに設定
         delegate?.setWeather(weather: "Sunny")
-        print("Sunny")
         //前の画面に戻る
-        
+        dismiss(animated: true, completion: nil)
+
     }
+    
+    //アラームの天気をRainyに設定する
     @IBAction func setWeatherRainy(_ sender: UIButton) {
         //天気をrainyに設定
         delegate?.setWeather(weather: "Rainy")
-        print("Rainy")
         //前に画面に戻る
+        dismiss(animated: true, completion: nil)
+
     }
 
+    //MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,4 +55,10 @@ class WeatherViewController: UIViewController {
     }
     */
 
+}
+
+//MARK - Protocol
+protocol WeatherViewDelegate: class {
+    // 天気を設定するメソッド
+    func setWeather(weather: String)
 }

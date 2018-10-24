@@ -10,7 +10,7 @@ import UIKit
 
 class Alerm {
     
-    //MARK: Properties
+    //MARK: - Properties
     
     var time: Date
     var weather: String
