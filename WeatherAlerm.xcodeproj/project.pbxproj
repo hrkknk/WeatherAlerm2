@@ -15,7 +15,6 @@
 		CCBC3459211F495800BF6E6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBC3457211F495800BF6E6D /* LaunchScreen.storyboard */; };
 		CCD8F966217B69BC00C4B00F /* AlermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8F964217B69BB00C4B00F /* AlermViewController.swift */; };
 		CCD8F967217B69BC00C4B00F /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */; };
-		CCD980F42168A50C00C9B8D8 /* AlermTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD980F32168A50C00C9B8D8 /* AlermTableViewController.swift */; };
 		CCD980F82168AC8400C9B8D8 /* AlermTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */; };
 		CCD980FC2168B5A100C9B8D8 /* Alerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD980FB2168B5A100C9B8D8 /* Alerm.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +42,6 @@
 		CCBC345A211F495800BF6E6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCD8F964217B69BB00C4B00F /* AlermViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlermViewController.swift; sourceTree = "<group>"; };
 		CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		CCD980F32168A50C00C9B8D8 /* AlermTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermTableViewController.swift; sourceTree = "<group>"; };
 		CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermTableViewCell.swift; sourceTree = "<group>"; };
 		CCD980FB2168B5A100C9B8D8 /* Alerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				CCBC344E211F495600BF6E6D /* AppDelegate.swift */,
-				CCD980F32168A50C00C9B8D8 /* AlermTableViewController.swift */,
 				CC7E77CD2182316C00638140 /* AlermListViewController.swift */,
 				CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */,
 				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
@@ -222,7 +219,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCD8F966217B69BC00C4B00F /* AlermViewController.swift in Sources */,
-				CCD980F42168A50C00C9B8D8 /* AlermTableViewController.swift in Sources */,
 				CCD980FC2168B5A100C9B8D8 /* Alerm.swift in Sources */,
 				CCD8F967217B69BC00C4B00F /* WeatherViewController.swift in Sources */,
 				CCBC344F211F495600BF6E6D /* AppDelegate.swift in Sources */,
