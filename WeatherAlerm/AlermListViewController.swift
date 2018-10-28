@@ -28,6 +28,17 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.selectedWeather = "Rainy"
     }
     
+    @IBAction func unwindToAlermList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? AlermViewController, let alerm = sourceViewController.alerm {
+            
+            // Add a new alerm.
+            let newIndexPath = IndexPath(row: alerms.count, section: 0)
+            
+            alerms.append(alerm)
+            alermList.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+    
     //MARK: - Methods
     //スイッチの状態を記憶(Cell側から読んでもらうプロトコルメソッド)
     func saveSwitchOnOff(index: Int) {
@@ -95,12 +106,12 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             //次の画面(AlermViewController)のデフォルトWeatherにSunny/Rainyをセット
-            alermViewController.alerm?.weather = self.selectedWeather!
+            alermViewController.weatherOfPreviousView = self.selectedWeather!
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
-    }
+}
     
     
     //MARK: Private Methods

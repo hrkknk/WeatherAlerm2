@@ -218,13 +218,20 @@
                                 <action selector="cancel:" destination="qFs-eU-oB3" id="Ypi-7A-kuT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="CtJ-hc-axb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="CtJ-hc-axb">
+                            <connections>
+                                <segue destination="mbi-l4-Tsy" kind="unwind" unwindAction="unwindToAlermListWithSender:" id="Wqq-G9-Hiz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="rPJ-xW-qEo" id="VFZ-iG-lPg"/>
+                        <outlet property="saveButton" destination="CtJ-hc-axb" id="fVK-IS-ubL"/>
                         <outlet property="selectedWeather" destination="kuO-nK-rWf" id="bza-ls-wsS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRc-09-OFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="mbi-l4-Tsy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3064.8000000000002" y="143.47826086956522"/>
         </scene>

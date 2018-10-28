@@ -7,35 +7,48 @@
 //
 
 import UIKit
+import os.log
 
 class AlermViewController: UIViewController, WeatherViewDelegate {
 
     // MARK: - Properties
-    var alerm: Alerm? = Alerm(time: Date(), weather: "Sunny")
+    var alerm: Alerm?
+    
+    var weatherOfPreviousView: String?
 
     //MARK: - Outlets
     @IBOutlet weak var selectedWeather: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     //MARK: - Actions
-    //キャンセルボタン
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func setAlermDate(_ sender: UIDatePicker) {
-       alerm!.time = sender.date
+        print("setAlermDate")
+        alerm!.time = sender.date
     }
     
     //MARK: - Methods
+    //
     func setWeather(weather: String) {
         alerm!.weather = weather
-        print("\(alerm!.weather)")
     }
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        //前画面(アラーム一覧画面)がSunny/RainyどちらだったかによってselectedWeatherを切り替え
-        self.selectedWeather.text = "\(self.alerm!.weather) >"
+        
+        //編集モードの場合、各UIの値を前画面から渡されたアラームの内容に更新
+        if let alerm = alerm {
+            //前画面(アラーム一覧画面)がSunny/RainyどちらだったかによってselectedWeatherを切り替え
+            self.selectedWeather.text = "\(self.alerm!.weather) >"
+            //TODO: 他のUIも初期化
+        } else { //編集モードでない場合、新規アラーム追加用にalermを初期化
+            alerm = Alerm(time: datePicker.date, weather: weatherOfPreviousView!)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,8 +80,17 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
                 weatherViewController.delegate = self
             
             default:
-                fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+                // Configure the destination view controller only when the save button is pressed.
+                guard let button = sender as? UIBarButtonItem, button === saveButton else {
+                    os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+                    return
+                }
+                
+                alerm!.weather = selectedWeather.text!.replacingOccurrences(of: " >", with: "")
+//                fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
+        
+
     }
 }
 
