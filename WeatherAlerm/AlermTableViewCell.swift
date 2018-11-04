@@ -20,6 +20,9 @@ class AlermTableViewCell: UITableViewCell {
     
     //自分のrow(Controller側から設定してもらう)
     private var row: Int = 0
+    public func getRow() -> Int {
+        return row
+    }
     public func setRow(row: Int) -> Void {
         self.row = row
         return

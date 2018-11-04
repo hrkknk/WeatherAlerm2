@@ -34,12 +34,17 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //AlermViewController画面のsaveButtonを押して戻ってきた時の処理
     @IBAction func unwindToAlermList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AlermViewController, let alerm = sourceViewController.alerm {
-            
-            // Add a new alerm.
-            let newIndexPath = IndexPath(row: alerms.count, section: 0)
-            
-            alerms.append(alerm)
-            alermList.insertRows(at: [newIndexPath], with: .automatic)
+            if let selectedIndexPath = alermList.indexPathForSelectedRow {
+                // Update an existing alerm.
+                alerms[selectedIndexPath.row] = alerm
+                alermList.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                // Add a new alerm.
+                let newIndexPath = IndexPath(row: alerms.count, section: 0)
+                
+                alerms.append(alerm)
+                alermList.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
     
@@ -71,7 +76,9 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         //アラーム再表示
-        
+        for cell in getAllCells() {
+            cell.timeLabel.text = alerms[cell.getRow()].getDateAsString()
+        }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -81,11 +88,11 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         addButton.isEnabled = !editing
         
         //Edit中はON/OFFスイッチを無効化(その逆は逆)
-        if (editing) {
+//        if (editing) {
             for cell in getAllCells() {
                 cell.isOnSwitch.isHidden = editing
             }
-        }
+//        }
         alermList.isEditing = editing
     }
     
@@ -207,17 +214,9 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         var cells = [AlermTableViewCell]()
 
         //TODO: 煩雑だからなんとかする
-        for i in 0...alermList.numberOfSections - 1
-        {
-            if(alermList.numberOfRows(inSection: i) > 0) {
-                for j in 0...alermList.numberOfRows(inSection: i) - 1
-                {
-                    if let cell = alermList.cellForRow(at: NSIndexPath(row: j, section: i) as IndexPath) {
-                        cells.append(cell as! AlermTableViewCell)
-                    }
-                }
-            } else {
-                if let cell = alermList.cellForRow(at: NSIndexPath(row: 0, section: i) as IndexPath) {
+        for i in 0...alermList.numberOfSections - 1 {
+            for j in 0...alermList.numberOfRows(inSection: i) {
+                if let cell = alermList.cellForRow(at: NSIndexPath(row: j, section: i) as IndexPath) {
                     cells.append(cell as! AlermTableViewCell)
                 }
             }
