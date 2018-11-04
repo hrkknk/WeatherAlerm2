@@ -31,6 +31,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.selectedWeather = "Rainy"
     }
     
+    //AlermViewController画面のsaveButtonを押して戻ってきた時の処理
     @IBAction func unwindToAlermList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AlermViewController, let alerm = sourceViewController.alerm {
             
@@ -46,7 +47,6 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //スイッチの状態を記憶(Cell側から読んでもらうプロトコルメソッド)
     func saveSwitchOnOff(index: Int) {
         alerms[index].isOn = !alerms[index].isOn
-        print("Cell:\(index) = \(alerms[index].isOn)")
     }
     
     override func viewDidLoad() {
@@ -56,10 +56,22 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.selectedWeather = "Sunny"
         
         //selectedWeatherと一致するアラームだけモデルに追加
-        addAlermsOfSelectedWeather(loadSampleAlerm())
+        addAlermsOfSelectedWeather(alerms)
         
         //ナビゲーションバーの左上にeditボタンを表示
         navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //アラーム未登録の場合、Editボタンは無効化
+        if alerms.count <= 0 {
+            editButtonItem.isEnabled = false
+        } else {
+            editButtonItem.isEnabled = true
+        }
+        
+        //アラーム再表示
+        
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -69,10 +81,11 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         addButton.isEnabled = !editing
         
         //Edit中はON/OFFスイッチを無効化(その逆は逆)
-        for cell in getAllCells() {
-            cell.isOnSwitch.isHidden = editing
+        if (editing) {
+            for cell in getAllCells() {
+                cell.isOnSwitch.isHidden = editing
+            }
         }
-        
         alermList.isEditing = editing
     }
     
@@ -192,19 +205,26 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //全てのセルを取得する
     private func getAllCells() -> [AlermTableViewCell] {
         var cells = [AlermTableViewCell]()
-        // assuming tableView is your self.tableView defined somewhere
+
+        //TODO: 煩雑だからなんとかする
         for i in 0...alermList.numberOfSections - 1
         {
-            for j in 0...alermList.numberOfRows(inSection: i) - 1
-            {
-                if let cell = alermList.cellForRow(at: NSIndexPath(row: j, section: i) as IndexPath) {
+            if(alermList.numberOfRows(inSection: i) > 0) {
+                for j in 0...alermList.numberOfRows(inSection: i) - 1
+                {
+                    if let cell = alermList.cellForRow(at: NSIndexPath(row: j, section: i) as IndexPath) {
+                        cells.append(cell as! AlermTableViewCell)
+                    }
+                }
+            } else {
+                if let cell = alermList.cellForRow(at: NSIndexPath(row: 0, section: i) as IndexPath) {
                     cells.append(cell as! AlermTableViewCell)
                 }
             }
         }
         return cells
     }
-    
+
     //TODO: テスト用。あとで消すこと
     private func loadSampleAlerm() -> [Alerm] {
         

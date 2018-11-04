@@ -81,7 +81,9 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
                 os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
                 return
             }
-            //アラームを更新
+            
+            //AddAlermで遷移してきた場合は新規にアラームを生成
+            //EditAlerm遷移してきた場合はアラームを更新
             alerm = Alerm(time: datePicker.date, weather: selectedWeather.text!)
             return
         }
