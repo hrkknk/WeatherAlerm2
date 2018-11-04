@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class AlermListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlermTableViewDelegate {
 
@@ -45,6 +46,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
                 alerms.append(alerm)
                 alermList.insertRows(at: [newIndexPath], with: .automatic)
             }
+            saveAlerms()
             //画面遷移する前に編集モード解除
             setEditing(false, animated: false)
         }
@@ -67,6 +69,14 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //ナビゲーションバーの左上にeditボタンを表示
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        //保存データがある場合、それを読み込む
+        if let savedAlerms = loadAlerms() {
+            alerms += savedAlerms
+        } else {
+            // Load the sample data.
+            alerms += loadSampleAlerms()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,6 +147,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         if editingStyle == .delete {
             //アラームを削除
             alerms.remove(at: indexPath.row)
+            saveAlerms()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
 
@@ -198,7 +209,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-    //MARK: Private Methods
+    //MARK: - Private Methods
     
     fileprivate func addAlermsOfSelectedWeather(_ alerms: [Alerm]) {
         for alerm in alerms {
@@ -222,9 +233,23 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         return cells
     }
+    
+    
+    private func saveAlerms() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(alerms, toFile: Alerm.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Alerms successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save alerms...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadAlerms() -> [Alerm]?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Alerm.ArchiveURL.path) as? [Alerm]
+    }
 
     //TODO: テスト用。あとで消すこと
-    private func loadSampleAlerm() -> [Alerm] {
+    private func loadSampleAlerms() -> [Alerm] {
         
         guard let sampleAlerm1 = Alerm(time: Date(), weather: "Sunny") else {
             fatalError("Unable to instantiate alerm2")
