@@ -45,6 +45,8 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
                 alerms.append(alerm)
                 alermList.insertRows(at: [newIndexPath], with: .automatic)
             }
+            //画面遷移する前に編集モード解除
+            setEditing(false, animated: false)
         }
     }
     
@@ -157,9 +159,6 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
-        //画面遷移する前に編集モード解除
-        setEditing(false, animated: false)
         
         switch(segue.identifier ?? "") {
         case "AddAlerm": //"Add"ボタンによる画面遷移の場合
