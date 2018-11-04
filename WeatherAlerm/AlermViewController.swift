@@ -23,11 +23,19 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
     
     //MARK: - Actions
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        //AddAlermで遷移したかEditAlermで遷移したかによってcancelの方法を変える
+        if presentingViewController is UINavigationController {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
     }
     
     @IBAction func setAlermDate(_ sender: UIDatePicker) {
-        print("setAlermDate")
         alerm!.time = sender.date
     }
     
@@ -43,8 +51,10 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
         
         //編集モードの場合、各UIの値を前画面から渡されたアラームの内容に更新
         if let alerm = alerm {
+            //時刻引き継ぎ
+            self.datePicker.date = alerm.time
             //前画面(アラーム一覧画面)がSunny/RainyどちらだったかによってselectedWeatherを切り替え
-            self.selectedWeather.text = "\(self.alerm!.weather)"
+            self.selectedWeather.text = alerm.weather
             //TODO: 他のUIも初期化
         } else { //編集モードでない場合、新規アラーム追加用にalermを初期化
             alerm = Alerm(time: datePicker.date, weather: weatherOfPreviousView!)
@@ -71,8 +81,8 @@ class AlermViewController: UIViewController, WeatherViewDelegate {
                 os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
                 return
             }
-            //saveするアラーム情報を
-            alerm!.weather = selectedWeather.text!
+            //アラームを更新
+            alerm = Alerm(time: datePicker.date, weather: selectedWeather.text!)
             return
         }
         

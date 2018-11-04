@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hhi-8f-T3u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G3J-Zm-D4g">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,26 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rX6-G3-v7M">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="AlermList" id="HRz-8x-Zce">
-                                        <barButtonItem key="rightBarButtonItem" title="Add" id="Gv6-Zh-DTJ">
-                                            <connections>
-                                                <segue destination="eNa-qO-0FR" kind="show" identifier="AddAlerm" id="Jul-ZF-769"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f49-bO-p0a">
                                 <rect key="frame" x="0.0" y="64" width="378" height="557"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lmN-JX-s5A">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lmN-JX-s5A">
                                         <rect key="frame" x="0.0" y="0.0" width="378" height="557"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlermTableViewCell" rowHeight="60" id="nol-w4-AoU" customClass="AlermTableViewCell" customModule="WeatherAlerm" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AlermTableViewCell" editingAccessoryType="disclosureIndicator" rowHeight="60" id="nol-w4-AoU" customClass="AlermTableViewCell" customModule="WeatherAlerm" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="378" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nol-w4-AoU" id="Qqo-oc-OVk">
@@ -45,7 +33,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9h-zK-oTX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                                            <rect key="frame" x="15" y="0.0" width="285" height="60"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -61,7 +49,7 @@
                                                         <constraint firstItem="v9h-zK-oTX" firstAttribute="centerY" secondItem="Qqo-oc-OVk" secondAttribute="centerY" id="98W-RZ-edK"/>
                                                         <constraint firstItem="z5r-n3-TFh" firstAttribute="top" secondItem="Qqo-oc-OVk" secondAttribute="topMargin" constant="3" id="JFn-Q3-gB2"/>
                                                         <constraint firstItem="v9h-zK-oTX" firstAttribute="centerY" secondItem="z5r-n3-TFh" secondAttribute="centerY" id="MM4-5i-ldt"/>
-                                                        <constraint firstItem="v9h-zK-oTX" firstAttribute="leading" secondItem="Qqo-oc-OVk" secondAttribute="leading" constant="20" id="QMz-Os-kIa"/>
+                                                        <constraint firstItem="v9h-zK-oTX" firstAttribute="leading" secondItem="Qqo-oc-OVk" secondAttribute="leading" constant="15" id="QMz-Os-kIa"/>
                                                         <constraint firstItem="v9h-zK-oTX" firstAttribute="top" secondItem="Qqo-oc-OVk" secondAttribute="top" id="ZKm-jy-IO9"/>
                                                         <constraint firstItem="z5r-n3-TFh" firstAttribute="leading" secondItem="v9h-zK-oTX" secondAttribute="trailing" constant="22" id="x1R-pN-hRE"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="z5r-n3-TFh" secondAttribute="trailing" constant="-6" id="xF7-lv-wAI"/>
@@ -70,6 +58,7 @@
                                                 <connections>
                                                     <outlet property="isOnSwitch" destination="z5r-n3-TFh" id="Lgw-Eg-EFh"/>
                                                     <outlet property="timeLabel" destination="v9h-zK-oTX" id="aXy-aw-xz9"/>
+                                                    <segue destination="qFs-eU-oB3" kind="show" identifier="EditAlerm" id="8HT-ca-Vh2"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -115,27 +104,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="f49-bO-p0a" firstAttribute="top" secondItem="rX6-G3-v7M" secondAttribute="bottom" id="6te-9i-k6F"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f49-bO-p0a" secondAttribute="trailing" constant="-19" id="Bx6-j0-ehc"/>
-                            <constraint firstAttribute="trailing" secondItem="rX6-G3-v7M" secondAttribute="trailing" id="C4C-FM-QeH"/>
                             <constraint firstItem="3Lx-F1-HXB" firstAttribute="bottom" secondItem="f49-bO-p0a" secondAttribute="bottom" constant="46" id="CPg-oz-jgZ"/>
-                            <constraint firstItem="rX6-G3-v7M" firstAttribute="top" secondItem="3Lx-F1-HXB" secondAttribute="top" id="Gve-dJ-p0X"/>
                             <constraint firstItem="4zT-CH-Jix" firstAttribute="leading" secondItem="f49-bO-p0a" secondAttribute="leading" id="Vvd-Xt-UBG"/>
-                            <constraint firstItem="rX6-G3-v7M" firstAttribute="leading" secondItem="uwP-N7-ZaQ" secondAttribute="leading" id="ZLC-G5-vnL"/>
+                            <constraint firstItem="f49-bO-p0a" firstAttribute="leading" secondItem="uwP-N7-ZaQ" secondAttribute="leading" id="duH-qS-aDz"/>
                             <constraint firstItem="4zT-CH-Jix" firstAttribute="bottom" secondItem="3Lx-F1-HXB" secondAttribute="bottom" id="gsr-kq-Ec8"/>
+                            <constraint firstItem="f49-bO-p0a" firstAttribute="top" secondItem="3Lx-F1-HXB" secondAttribute="top" id="lV2-kp-ZRU"/>
                             <constraint firstItem="4zT-CH-Jix" firstAttribute="top" secondItem="f49-bO-p0a" secondAttribute="bottom" id="oq3-xM-L2U"/>
-                            <constraint firstItem="rX6-G3-v7M" firstAttribute="leading" secondItem="f49-bO-p0a" secondAttribute="leading" id="wZ6-xt-VpH"/>
-                            <constraint firstItem="4zT-CH-Jix" firstAttribute="trailing" secondItem="rX6-G3-v7M" secondAttribute="trailing" id="zC5-J5-bh0"/>
+                            <constraint firstAttribute="trailing" secondItem="4zT-CH-Jix" secondAttribute="trailing" id="rYy-wr-mgd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Lx-F1-HXB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OQ1-8j-S6p">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="h2O-PI-jIZ">
+                            <connections>
+                                <segue destination="eNa-qO-0FR" kind="presentation" identifier="AddAlerm" id="1Vx-5s-Goa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="h2O-PI-jIZ" id="O4i-LI-P7r"/>
                         <outlet property="alermList" destination="lmN-JX-s5A" id="h4z-Pg-CXW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mug-C1-fCi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="144"/>
+            <point key="canvasLocation" x="3148" y="142.57871064467767"/>
         </scene>
         <!--Add Alerm-->
         <scene sceneID="Uxu-fv-uj3">
@@ -145,7 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPJ-xW-qEo">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rPJ-xW-qEo">
                                 <rect key="frame" x="0.0" y="64" width="375" height="210"/>
                                 <date key="date" timeIntervalSinceReferenceDate="561711682.096331">
                                     <!--2018-10-20 07:01:22 +0000-->
@@ -218,7 +212,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28K-uh-luT">
-                                <rect key="frame" x="328" y="416" width="49" height="31"/>
+                                <rect key="frame" x="328" y="416" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="YNI-uu-jET"/>
                                 </constraints>
@@ -293,7 +287,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRc-09-OFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mbi-l4-Tsy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3064.8000000000002" y="143.47826086956522"/>
+            <point key="canvasLocation" x="4004" y="143.47826086956522"/>
         </scene>
         <!--Weather-->
         <scene sceneID="nMg-rx-Dda">
@@ -335,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N25-8a-0f8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4489" y="144"/>
+            <point key="canvasLocation" x="5428" y="143.47826086956522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M1u-cB-SWu">
@@ -353,7 +347,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiU-29-9o5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="145"/>
+            <point key="canvasLocation" x="4004" y="-578"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a1K-It-RLl">
@@ -371,7 +365,28 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mn0-bv-k0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3774" y="145"/>
+            <point key="canvasLocation" x="4712.8000000000002" y="144.3778110944528"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MZY-mK-FFi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G3J-Zm-D4g" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iHK-LS-z9j">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hhi-8f-T3u" kind="relationship" relationship="rootViewController" id="iZx-lk-KvH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oja-jV-nsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2423" y="143"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8HT-ca-Vh2"/>
+    </inferredMetricsTieBreakers>
 </document>

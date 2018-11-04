@@ -48,6 +48,10 @@ class AlermTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+//    func enableEditButton(_ enabled: Bool) {
+//        self.editButton.isEnabled = enabled
+//    }
 }
 
 //MARK - Protocol

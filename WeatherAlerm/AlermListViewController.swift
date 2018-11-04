@@ -17,7 +17,10 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //Sunny/Rainyどっちのアラームリストを表示するか
     var selectedWeather: String?
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     @IBOutlet weak var alermList: UITableView!
+    
     //MARK: - Actions
     
     @IBAction func selectSunny(_ sender: UIButton) {
@@ -54,6 +57,23 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //selectedWeatherと一致するアラームだけモデルに追加
         addAlermsOfSelectedWeather(loadSampleAlerm())
+        
+        //ナビゲーションバーの左上にeditボタンを表示
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+     
+        //Edit中はAddボタンを無効化(その逆は逆)
+        addButton.isEnabled = !editing
+        
+        //Edit中はON/OFFスイッチを無効化(その逆は逆)
+        for cell in getAllCells() {
+            cell.isOnSwitch.isHidden = editing
+        }
+        
+        alermList.isEditing = editing
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,10 +83,10 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Table view data source
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        //TODO: あとで変えるかも？
-//        return 1
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //TODO: あとで変えるかも？
+        return 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alerms.count
@@ -90,12 +110,39 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
+    //編集モード
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //アラームを削除
+            alerms.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        //編集モードでない時はEditAlermのsegueをOFFにする
+        if !alermList.isEditing && identifier == "EditAlerm" {
+            return false
+        }
+        
+        return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
+        //画面遷移する前に編集モード解除
+        setEditing(false, animated: false)
+        
         switch(segue.identifier ?? "") {
-        case "AddAlerm":
+        case "AddAlerm": //"Add"ボタンによる画面遷移の場合
             //UINavigationControllerを取得
             guard let navigationController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -108,10 +155,28 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
             //次の画面(AlermViewController)のデフォルトWeatherにSunny/Rainyをセット
             alermViewController.weatherOfPreviousView = self.selectedWeather!
             
+        case "EditAlerm": //編集モードでアラームセルをタップして画面遷移する場合
+            guard let alermViewController = segue.destination as? AlermViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            //タップしたアラームセルを取得
+            guard let selectedAlermCell = sender as? AlermTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            //アラームセルのindexPathを取得
+            guard let indexPath = alermList.indexPath(for: selectedAlermCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            //indexPathを元に、対象のモデルを取得してセット
+            alermViewController.alerm = alerms[indexPath.row]
+            
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
-}
+    }
     
     
     //MARK: Private Methods
@@ -122,6 +187,22 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.alerms += [alerm]
             }
         }
+    }
+    
+    //全てのセルを取得する
+    private func getAllCells() -> [AlermTableViewCell] {
+        var cells = [AlermTableViewCell]()
+        // assuming tableView is your self.tableView defined somewhere
+        for i in 0...alermList.numberOfSections - 1
+        {
+            for j in 0...alermList.numberOfRows(inSection: i) - 1
+            {
+                if let cell = alermList.cellForRow(at: NSIndexPath(row: j, section: i) as IndexPath) {
+                    cells.append(cell as! AlermTableViewCell)
+                }
+            }
+        }
+        return cells
     }
     
     //TODO: テスト用。あとで消すこと
