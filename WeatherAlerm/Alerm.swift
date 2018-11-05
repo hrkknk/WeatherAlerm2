@@ -91,10 +91,7 @@ class Alerm: NSObject, NSCoding {
             os_log("Unable to decode the weather for a Alerm object.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let isOn = aDecoder.decodeBool(forKey: PropertyKey.isOn) as? Bool else {
-            os_log("Unable to decode the isOn for a Alerm object.", log: OSLog.default, type: .debug)
-            return nil
-        }
+        let isOn = aDecoder.decodeBool(forKey: PropertyKey.isOn)
         
         // Must call designated initializer.
         self.init(time: time, weather: weather, isOn: isOn)
