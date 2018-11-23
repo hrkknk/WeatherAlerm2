@@ -64,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A4C1E9721A84A9900A1CF08 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC3452211F495600BF6E6D /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CC2568582174F1C200156CD9 /* WeatherAlermTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,13 +102,13 @@
 		CCBC344D211F495600BF6E6D /* WeatherAlerm */ = {
 			isa = PBXGroup;
 			children = (
+				2A4C1E9721A84A9900A1CF08 /* View */,
 				CCBC344E211F495600BF6E6D /* AppDelegate.swift */,
 				CC7E77CD2182316C00638140 /* AlermListViewController.swift */,
 				CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */,
 				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
 				CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */,
 				CCD980FB2168B5A100C9B8D8 /* Alerm.swift */,
-				CCBC3452211F495600BF6E6D /* Main.storyboard */,
 				CCBC3455211F495800BF6E6D /* Assets.xcassets */,
 				CCBC3457211F495800BF6E6D /* LaunchScreen.storyboard */,
 				CCBC345A211F495800BF6E6D /* Info.plist */,
