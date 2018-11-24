@@ -67,9 +67,30 @@
 		2A4C1E9721A84A9900A1CF08 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CCBC3457211F495800BF6E6D /* LaunchScreen.storyboard */,
 				CCBC3452211F495600BF6E6D /* Main.storyboard */,
+				CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2A4C1E9821A84BD400A1CF08 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC344E211F495600BF6E6D /* AppDelegate.swift */,
+				CC7E77CD2182316C00638140 /* AlermListViewController.swift */,
+				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
+				CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2A4C1E9921A84BF900A1CF08 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CCD980FB2168B5A100C9B8D8 /* Alerm.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CC2568582174F1C200156CD9 /* WeatherAlermTests */ = {
@@ -103,14 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				2A4C1E9721A84A9900A1CF08 /* View */,
-				CCBC344E211F495600BF6E6D /* AppDelegate.swift */,
-				CC7E77CD2182316C00638140 /* AlermListViewController.swift */,
-				CCD980F72168AC8400C9B8D8 /* AlermTableViewCell.swift */,
-				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
-				CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */,
-				CCD980FB2168B5A100C9B8D8 /* Alerm.swift */,
+				2A4C1E9821A84BD400A1CF08 /* Controller */,
+				2A4C1E9921A84BF900A1CF08 /* Model */,
 				CCBC3455211F495800BF6E6D /* Assets.xcassets */,
-				CCBC3457211F495800BF6E6D /* LaunchScreen.storyboard */,
 				CCBC345A211F495800BF6E6D /* Info.plist */,
 			);
 			path = WeatherAlerm;
