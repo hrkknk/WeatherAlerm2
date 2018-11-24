@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A4C1E9D21A918EC00A1CF08 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4C1E9C21A918EC00A1CF08 /* WeatherAPI.swift */; };
 		CC25685A2174F1C200156CD9 /* WeatherAlermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2568592174F1C200156CD9 /* WeatherAlermTests.swift */; };
 		CC7E77CE2182316C00638140 /* AlermListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7E77CD2182316C00638140 /* AlermListViewController.swift */; };
 		CCBC344F211F495600BF6E6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC344E211F495600BF6E6D /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A4C1E9C21A918EC00A1CF08 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherAPI.swift; path = /Users/ryo/workspace/Swift/WeatherAlerm2/WeatherAlerm/Controller/WeatherAPI.swift; sourceTree = "<absolute>"; };
 		CC2568572174F1C200156CD9 /* WeatherAlermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAlermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2568592174F1C200156CD9 /* WeatherAlermTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlermTests.swift; sourceTree = "<group>"; };
 		CC25685B2174F1C200156CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				CC7E77CD2182316C00638140 /* AlermListViewController.swift */,
 				CCD8F964217B69BB00C4B00F /* AlermViewController.swift */,
 				CCD8F965217B69BB00C4B00F /* WeatherViewController.swift */,
+				2A4C1E9C21A918EC00A1CF08 /* WeatherAPI.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCD8F966217B69BC00C4B00F /* AlermViewController.swift in Sources */,
+				2A4C1E9D21A918EC00A1CF08 /* WeatherAPI.swift in Sources */,
 				CCD980FC2168B5A100C9B8D8 /* Alerm.swift in Sources */,
 				CCD8F967217B69BC00C4B00F /* WeatherViewController.swift in Sources */,
 				CCBC344F211F495600BF6E6D /* AppDelegate.swift in Sources */,
