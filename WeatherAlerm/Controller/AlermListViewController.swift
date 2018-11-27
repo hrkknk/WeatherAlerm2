@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreLocation
 
 class AlermListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlermTableViewDelegate {
 
@@ -17,6 +18,8 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //Sunny/Rainyどっちのアラームリストを表示するか
     var selectedWeather: String?
+    
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
@@ -63,6 +66,12 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //TODO: 前回アプリを閉じた時にSunny/Rainyどっちを選択していたか記憶しておく
         self.selectedWeather = "Sunny"
+        
+        // 位置情報取得のためのデリゲート
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
         //selectedWeatherと一致するアラームだけモデルに追加
         addAlermsOfSelectedWeather(alerms)
@@ -208,7 +217,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    
+
     //MARK: - Private Methods
     
     fileprivate func addAlermsOfSelectedWeather(_ alerms: [Alerm]) {
@@ -266,3 +275,4 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         return [sampleAlerm1, sampleAlerm2, sampleAlerm3]
     }
 }
+

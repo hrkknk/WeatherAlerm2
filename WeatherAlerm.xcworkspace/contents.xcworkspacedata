@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/ryo/workspace/Swift/WeatherAlerm2/WeatherAlerm/Controller/WeatherAPI.swift">
-   </FileRef>
-   <FileRef
       location = "group:WeatherAlerm.xcodeproj">
    </FileRef>
    <FileRef

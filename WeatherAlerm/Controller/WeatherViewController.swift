@@ -8,6 +8,12 @@
 
 import UIKit
 
+//MARK - Protocol
+protocol WeatherViewDelegate: class {
+    // 天気を設定するメソッド
+    func setWeather(weather: String)
+}
+
 class WeatherViewController: UIViewController {
     
     //MARK: - Properties
@@ -41,7 +47,6 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
@@ -55,10 +60,4 @@ class WeatherViewController: UIViewController {
     }
     */
 
-}
-
-//MARK - Protocol
-protocol WeatherViewDelegate: class {
-    // 天気を設定するメソッド
-    func setWeather(weather: String)
 }
