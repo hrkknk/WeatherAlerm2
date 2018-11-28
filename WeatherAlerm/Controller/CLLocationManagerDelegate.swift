@@ -9,6 +9,7 @@
 import CoreLocation
 
 extension AlermListViewController: CLLocationManagerDelegate {
+    
     //MARK: - 位置情報取得
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -22,6 +23,15 @@ extension AlermListViewController: CLLocationManagerDelegate {
             locationManager.delegate = nil
             
             print("latitude: \(location.coordinate.latitude), longitude: \(location.coordinate.longitude)")
+            
+            // 緯度・経度を文字列に変換してセット
+            let latitude = String(location.coordinate.latitude)
+            let longitude = String(location.coordinate.longitude)
+            
+            // Dictionary型を定義して、緯度・経度・APIKeyをセット
+            let params: [String : String] = ["lat" : latitude, "lon" : longitude, "appid" : APP_ID]
+            
+            getWeatherData(url: WEATHER_URL, parameters: params)
         }
     }
     

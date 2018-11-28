@@ -9,6 +9,8 @@
 import UIKit
 import os.log
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 class AlermListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlermTableViewDelegate {
 
@@ -19,11 +21,16 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //Sunny/Rainyどっちのアラームリストを表示するか
     var selectedWeather: String?
     
+    // 位置情報取得用オブジェクト
     let locationManager = CLLocationManager()
     
-    @IBOutlet weak var addButton: UIBarButtonItem!
+    // 天気予報API
+    let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+    let APP_ID = "3486f122e589efd3e860f3a10775ce47"
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var alermList: UITableView!
+    
     
     //MARK: - Actions
     
@@ -121,6 +128,32 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Networking
+    func getWeatherData(url: String, parameters: [String : String]) {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+            response in
+            if response.result.isSuccess {
+                print("Success! Got the weather data")
+                
+                // response.result.valueはオプショナル型だが、if文で結果を確認しているのでforce unwrappedしてよい
+                let weatherJSON: JSON = JSON(response.result.value!)
+                print(weatherJSON)
+                
+                // クロージャの中でメソッドを呼び出すにはself句を呼び出すメソッドの前につける必要あり
+                self.parsingJSON(json: weatherJSON)
+                
+            } else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+    func parsingJSON(json: JSON) {
+        print(json["weather"][0]["main"].stringValue)
+        print(json["name"].stringValue)
+    }
+
     
     // MARK: - Table view data source
     
