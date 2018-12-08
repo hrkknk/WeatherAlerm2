@@ -8,6 +8,9 @@
 
 import UIKit
 import os.log
+import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 class AlermListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlermTableViewDelegate {
 
@@ -18,9 +21,16 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //Sunny/Rainyどっちのアラームリストを表示するか
     var selectedWeather: String?
     
-    @IBOutlet weak var addButton: UIBarButtonItem!
+    // 位置情報取得用オブジェクト
+    let locationManager = CLLocationManager()
     
+    // 天気予報API
+    let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+    let APP_ID = "3486f122e589efd3e860f3a10775ce47"
+    
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var alermList: UITableView!
+    
     
     //MARK: - Actions
     
@@ -63,6 +73,12 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //TODO: 前回アプリを閉じた時にSunny/Rainyどっちを選択していたか記憶しておく
         self.selectedWeather = "Sunny"
+        
+        // 位置情報取得のためのデリゲート
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
         //selectedWeatherと一致するアラームだけモデルに追加
         addAlermsOfSelectedWeather(alerms)
@@ -112,6 +128,32 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Networking
+    func getWeatherData(url: String, parameters: [String : String]) {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+            response in
+            if response.result.isSuccess {
+                print("Success! Got the weather data")
+                
+                // response.result.valueはオプショナル型だが、if文で結果を確認しているのでforce unwrappedしてよい
+                let weatherJSON: JSON = JSON(response.result.value!)
+                print(weatherJSON)
+                
+                // クロージャの中でメソッドを呼び出すにはself句を呼び出すメソッドの前につける必要あり
+                self.parsingJSON(json: weatherJSON)
+                
+            } else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+    func parsingJSON(json: JSON) {
+        print(json["weather"][0]["main"].stringValue)
+        print(json["name"].stringValue)
+    }
+
     
     // MARK: - Table view data source
     
@@ -208,7 +250,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    
+
     //MARK: - Private Methods
     
     fileprivate func addAlermsOfSelectedWeather(_ alerms: [Alerm]) {
@@ -266,3 +308,4 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         return [sampleAlerm1, sampleAlerm2, sampleAlerm3]
     }
 }
+
