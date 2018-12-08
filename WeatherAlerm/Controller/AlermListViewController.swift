@@ -13,7 +13,7 @@ import Alamofire
 import SwiftyJSON
 
 class AlermListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlermTableViewDelegate {
-
+    
     //MARK: - Properties
     //アラームモデル
     var alerms = [Alerm]()
@@ -111,16 +111,16 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-     
+        
         //Edit中はAddボタンを無効化(その逆は逆)
         addButton.isEnabled = !editing
         
         //Edit中はON/OFFスイッチを無効化(その逆は逆)
-//        if (editing) {
-            for cell in getAllCells() {
-                cell.isOnSwitch.isHidden = editing
-            }
-//        }
+        //        if (editing) {
+        for cell in getAllCells() {
+            cell.isOnSwitch.isHidden = editing
+        }
+        //        }
         alermList.isEditing = editing
     }
     
@@ -130,8 +130,8 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // Networking
-    func getWeatherData(url: String, parameters: [String : String]) {
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+    func getWeatherData(url: String, geoCoordinatesInfo: [String : String]) {
+        Alamofire.request(url, method: .get, parameters: geoCoordinatesInfo).responseJSON {
             response in
             if response.result.isSuccess {
                 print("Success! Got the weather data")
@@ -153,7 +153,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         print(json["weather"][0]["main"].stringValue)
         print(json["name"].stringValue)
     }
-
+    
     
     // MARK: - Table view data source
     
@@ -167,7 +167,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AlermTableViewCell", for: indexPath) as? AlermTableViewCell else {
             fatalError("AlermTableViewCell型じゃないよ！")
         }
@@ -192,7 +192,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
             saveAlerms()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-
+            
         }
     }
     
@@ -250,7 +250,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-
+    
     //MARK: - Private Methods
     
     fileprivate func addAlermsOfSelectedWeather(_ alerms: [Alerm]) {
@@ -264,7 +264,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     //全てのセルを取得する
     private func getAllCells() -> [AlermTableViewCell] {
         var cells = [AlermTableViewCell]()
-
+        
         //TODO: 煩雑だからなんとかする
         for i in 0...alermList.numberOfSections - 1 {
             for j in 0...alermList.numberOfRows(inSection: i) {
@@ -289,7 +289,7 @@ class AlermListViewController: UIViewController, UITableViewDelegate, UITableVie
     private func loadAlerms() -> [Alerm]?  {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Alerm.ArchiveURL.path) as? [Alerm]
     }
-
+    
     //TODO: テスト用。あとで消すこと
     private func loadSampleAlerms() -> [Alerm] {
         

@@ -29,9 +29,9 @@ extension AlermListViewController: CLLocationManagerDelegate {
             let longitude = String(location.coordinate.longitude)
             
             // Dictionary型を定義して、緯度・経度・APIKeyをセット
-            let params: [String : String] = ["lat" : latitude, "lon" : longitude, "appid" : APP_ID]
+            let geoCoordinatesInfo: [String : String] = ["lat" : latitude, "lon" : longitude, "appid" : APP_ID]
             
-            getWeatherData(url: WEATHER_URL, parameters: params)
+            getWeatherData(url: WEATHER_URL, geoCoordinatesInfo: geoCoordinatesInfo)
         }
     }
     
